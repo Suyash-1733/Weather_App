@@ -1,0 +1,124 @@
+import React from "react";
+import "../Components/Discription.css";
+import {
+  FaArrowAltCircleDown,
+  FaArrowAltCircleUp,
+  FaWind,
+} from "react-icons/fa";
+import { BiHappy } from "react-icons/bi";
+import { MdCompress, MdOutlineWaterDrop } from "react-icons/md";
+import WeatherService from "../WeatherService"
+
+const Discription = ({ weather, units }) => {
+  const tempUnit = units === "metric" ? "°C" : "°F";
+  const windUnit = units === "metric" ? "m/s" : "m/h";
+
+  const cards = [
+    {
+      id: 1,
+      icon: <FaArrowAltCircleDown />,
+      title: "Min",
+      data: weather.temp_min,
+      unit: tempUnit,
+    },
+    {
+      id: 2,
+      icon: <FaArrowAltCircleUp />,
+      title: "Max",
+      data: weather.temp_max,
+      unit: tempUnit,
+    },
+    {
+      id: 3,
+      icon: <BiHappy />,
+      title: "Feels_like",
+      data: weather.feels_like,
+      unit: tempUnit,
+    },
+    {
+      id: 4,
+      icon: <MdCompress />,
+      title: "Pressure",
+      data: weather.pressure,
+      unit: "hPa",
+    },
+    {
+      id: 5,
+      icon: <MdOutlineWaterDrop />,
+      title: "Humidity",
+      data: weather.humidity,
+      unit: " %",
+    },
+    {
+        id: 6,
+        icon: <FaWind />,
+        title: "wind speed",
+        data: weather.speed,
+        unit: windUnit,
+    },
+  ];
+
+  return (
+    <div className="section section__discription">
+      {cards.map(({ id, icon, title, data, unit }) => (
+        <div key ={id} className="card">
+          <div className="discription__card-icon">
+            {/* <FaArrowAltCircleDown /> */}
+            {icon}
+            <small>{title}</small>
+          </div>
+          <h2>{`${data} ${unit}`}</h2>
+        </div>
+      ))}
+      {/* <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div> */}
+
+      {/* <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div>
+
+        <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div>
+
+        <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div>
+
+        <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div>
+
+        <div className="card">
+            <div className="discription__card-icon">
+                <FaArrowAltCircleDown/>
+                <small>Min</small>
+            </div>
+            <h2>25 °C</h2>
+        </div> */}
+    </div>
+  );
+};
+
+export default Discription;
